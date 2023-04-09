@@ -1,6 +1,6 @@
 var config = {
     style: 'mapbox://styles/mapbox/streets-v11',
-    accessToken: 'YOUR_ACCESS_TOKEN',
+    accessToken: 'pk.eyJ1IjoibGVhbWFyaWUiLCJhIjoiUzllXzJqayJ9.ZPC8TyOilUnFD3-_9yOu3g',
     showMarkers: true,
     markerColor: '#3FB1CE',
     //projection: 'equirectangular',

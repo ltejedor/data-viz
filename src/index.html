@@ -9,6 +9,8 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
     <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
     <script src="https://unpkg.com/scrollama"></script>
+    <script src="js/arc.js"></script>
+
     <style>
         body {
             margin:0;
@@ -78,12 +80,12 @@
             margin: 0 auto;
         }
         .lefty {
-            width: 33vw;
-            margin-left: 5vw;
+            width: 38vw;
+            margin-left: 2vw;
         }
         .righty {
-            width: 33vw;
-            margin-left: 62vw;
+            width: 38vw;
+            margin-left: 60vw;
         }
         .fully {
             width: 100%;
@@ -95,7 +97,7 @@
         }
         .dark {
             color: #fafafa;
-            background-color: #444;
+            background-color: #000;
         }
         .step {
             padding-bottom: 50vh;
@@ -139,6 +141,28 @@
 
 <script src="./config.js"></script>
 <script>
+// Function to generate curved line using arc.js
+// Function to generate curved line using arc.js
+function createCurvedLine(coord1, coord2, samples, properties) {
+  const arcGenerator = new arc.GreatCircle(coord1, coord2, properties);
+  const line = arcGenerator.Arc(samples, { offset: 10 });
+
+  return {
+    type: "Feature",
+    geometry: {
+      type: "LineString",
+      coordinates: line.json().geometry.coordinates
+    }
+  };
+}
+
+// Define the coordinates for Guatemala City and Ciudad Juárez
+const guatemalaCity = { x: -90.5353, y: 14.6133 };
+const ciudadJuarez = { x: -106.4245, y: 31.6904 };
+
+// Generate the curved line using the createCurvedLine function
+const curvedLine = createCurvedLine(guatemalaCity, ciudadJuarez, 100);
+
 var initLoad = true;
 var layerTypes = {
     'fill': ['fill-opacity'],
@@ -317,6 +341,7 @@ map.on("load", function() {
         // add the DEM source as a terrain layer with exaggerated height
         map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
 
+
         // add a sky layer that will show when the map is highly pitched
         map.addLayer({
             'id': 'sky',
@@ -327,6 +352,27 @@ map.on("load", function() {
                 'sky-atmosphere-sun-intensity': 15
             }
         });
+
+        map.addSource("curved-line", {
+            type: "geojson",
+            data: {
+            type: "FeatureCollection",
+            features: [curvedLine],
+            },
+        });
+
+        map.addLayer({
+            id: "curved-line-layer",
+            type: "line",
+            source: "curved-line",
+            layout: {},
+            paint: {
+            "line-color": "orange",
+            "line-width": 0,
+            },
+        });
+
+
     };
 
     // As the map moves, grab and update bounds in inset map.
@@ -473,6 +519,26 @@ function addInsetLayer(bounds) {
             'line-width': 1
         }
     });
+
+    insetMap.addSource("curved-line", {
+    type: "geojson",
+    data: {
+      type: "FeatureCollection",
+      features: [curvedLine],
+    },
+  });
+
+  insetMap.addLayer({
+    id: "curved-line-layer",
+    type: "line",
+    source: "curved-line",
+    layout: {},
+    paint: {
+      "line-color": "white",
+      "line-width": 3,
+    },
+  });
+
 }
 
 function updateInsetLayer(bounds) {
@@ -483,6 +549,7 @@ function updateInsetLayer(bounds) {
 
 // setup resize event
 window.addEventListener('resize', scroller.resize);
+
 
 </script>
 
