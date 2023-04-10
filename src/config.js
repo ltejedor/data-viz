@@ -16,6 +16,37 @@ var config = {
     footer: '',
     chapters: [
         {
+            id: 'vid-1',
+            alignment: 'left',
+            hidden: false,
+            title: '',
+            image: '',
+            description: '<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe src="https://www.loom.com/embed/874db8a0eace4460a2f1e6127761e322" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>',
+            location: {
+                center: [-106.4245, 31.6904],
+                zoom: 8.5,
+                pitch: 60,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                // {
+                //     layer: 'layer-name',
+                //     opacity: 1,
+                //     duration: 5000
+                // }
+            ],
+            onChapterExit: [
+                // {
+                //     layer: 'layer-name',
+                //     opacity: 0
+                // }
+            ]
+        },
+
+        {
             id: 'slug-style-id',
             alignment: 'left',
             hidden: false,

@@ -131,6 +131,12 @@
             touch-action: unset;
         }
 
+        #vid-1 {
+            margin-left: -40px;
+            width: 106%;
+            margin-top: -93px;
+        }
+
         </style>
 </head>
 <body>
@@ -371,7 +377,21 @@ map.on("load", function() {
             "line-width": 0,
             },
         });
-
+        
+        map.addLayer({
+            id: "custom-building",
+            type: "fill-extrusion",
+            source: "composite",
+            "source-layer": "building",
+            layout: {},
+            paint: {
+                "fill-extrusion-color": "#FF0000", // Set the color you want for the building
+                "fill-extrusion-opacity": 1,
+                "fill-extrusion-height": ["get", "height"],
+                "fill-extrusion-base": ["get", "min_height"]
+            },
+            filter: ["==", "osm_id", "177023493"]
+        });
 
     };
 
