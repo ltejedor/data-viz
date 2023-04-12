@@ -207,7 +207,7 @@ var config = {
             hidden: false,
             title: '',
             image: 'images/2.4.jpg',
-            description: '',
+            description: '<img src="images/graph-1.png">',
             location: {
                 center: [-106.421116, 31.690925],
                 zoom: 14,
@@ -264,33 +264,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: '',
-            image: 'images/3.1.jpg',
-            description: '',
-            location: {
-                center: [-94.1300, 17.5000],
-                zoom: 4,
-                pitch: 60,
-                bearing: -43.2,
-                // flyTo additional controls-
-                // These options control the flight curve, making it move
-                // slowly and zoom out almost completely before starting
-                // to pan.
-                //speed: 2, // make the flying slow
-                //curve: 1, // change the speed at which it zooms out
-            },
-            mapAnimation: 'flyTo',
-            rotateAnimation: true,
-            callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
-        },
-
-        {
-            id: 'second-identifier',
-            alignment: 'right',
-            hidden: false,
-            title: '',
-            image: 'images/3.2.jpg',
+            image: 'images/3.1.png',
             description: '',
             location: {
                 center: [-94.1300, 17.5000],
@@ -318,7 +292,7 @@ var config = {
             hidden: false,
             title: '',
             image: 'images/3.3.jpg',
-            description: '',
+            description: '<img src="images/graph-2.png">',
             location: {
                 center: [-94.1300, 17.5000],
                 zoom: 4,
